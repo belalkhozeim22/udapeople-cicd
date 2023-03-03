@@ -9,7 +9,7 @@ export interface Props {}
 export interface State {
   showLoader: boolean;
 }
-export class Root extends React.Component<Props, State> {
+export class Root extends React.Component?<Props, State> {
   state = {
     showLoader: true,
   };
