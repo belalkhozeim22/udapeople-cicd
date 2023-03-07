@@ -169,9 +169,10 @@ jobs:
 
   deploy-infrastructure:
     docker:
-      - image: amazon/aws-cli
+      - image: cimg/base:stable
     steps:
       - checkout
+      - install_awscli
       - run:
           name: Install tar utility
           command: |
@@ -205,7 +206,8 @@ jobs:
           root: ~/
           paths:
             - project/.circleci/ansible/inventory.txt
-      - destroy-environment             
+
+
 #  configure-infrastructure:
 #    docker:
 #      # Docker image here that supports Ansible
@@ -365,11 +367,12 @@ workflows:
             - test-backend
             - scan-backend
             - scan-frontend
-#      - deploy-infrastructure:
-#          requires: [test-frontend, test-backend, scan-frontend, scan-backend]
-#          filters:
-#            branches:
-#              only: [test-feature-branch]
+#
+      - deploy-infrastructure:
+          requires: [test-frontend, test-backend, scan-frontend, scan-backend]
+          filters:
+            branches:
+              only: [master]
 #      - configure-infrastructure:
 #          requires: [deploy-infrastructure]
 #      - run-migrations:
