@@ -220,7 +220,7 @@ jobs:
       - run: sudo apt install tar gzip
       - add_ssh_keys:
           fingerprints:
-            - "60:4a:b1:2e:ac:80:f2:be:13:98:8f:2a:84:6b:20:8b"      
+            - "60:82:2c:29:4e:9c:6d:8a:9a:db:06:66:2e:d8:a1:16"      
       - attach_workspace:
           at: ~/
       - run:
